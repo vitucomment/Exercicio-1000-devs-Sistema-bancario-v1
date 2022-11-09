@@ -1,6 +1,5 @@
-package br.com.mesttra.bancomil;
+package br.com.mesttra.bancomil.cliente;
 
-import java.math.BigDecimal;
 
 public class ClientePj extends Cliente {
 
@@ -9,7 +8,12 @@ public class ClientePj extends Cliente {
 	private String nomeSocial;
 	private String nomeFantasia;
 
-	public ClientePj(Integer numero, Integer agencia, Integer telefone, BigDecimal saldo, BigDecimal limite,
+	public ClientePj(String nomeSocial) {
+		this.nomeSocial = nomeSocial;
+	}
+	
+	
+	public ClientePj(Integer numero, Integer agencia, Integer telefone, Double saldo, Double limite,
 			String cnpj, String[] socios, String nomeSocial, String nomeFantasia) {
 		super(numero, agencia, telefone, saldo, limite);
 		this.cnpj = cnpj;

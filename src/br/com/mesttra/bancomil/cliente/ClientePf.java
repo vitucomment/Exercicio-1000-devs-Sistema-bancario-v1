@@ -1,6 +1,5 @@
-package br.com.mesttra.bancomil;
+package br.com.mesttra.bancomil.cliente;
 
-import java.math.BigDecimal;
 
 public class ClientePf extends Cliente {
 
@@ -8,7 +7,7 @@ public class ClientePf extends Cliente {
 	private String nome;
 	private int idade;
 
-	public ClientePf(Integer numero, Integer agencia, Integer telefone, BigDecimal saldo, BigDecimal limite, String cpf,
+	public ClientePf(Integer numero, Integer agencia, Integer telefone, Double saldo, Double limite, String cpf,
 			String nome, int idade) {
 		super(numero, agencia, telefone, saldo, limite);
 		this.cpf = cpf;
