@@ -15,7 +15,8 @@ public class Menu {
 		System.out.println("\t - Realizar transferência \t [4]");
 		System.out.println("\t - Alterar limite \t\t [5]");
 		System.out.println("\t - Depositar em conta \t\t [6]");
-		System.out.println("\t - Gerar relatório \t\t [7]\n");
+		System.out.println("\t - Clientes devedores \t\t [7]");
+		System.out.println("\t - Gerar relatório \t\t [8]\n");
 		System.out.println("\t - SAIR DO SISTEMA \t\t [0]\n");
 		System.out.print("\t OPERAÇÃO: ");
 	}
@@ -73,6 +74,14 @@ public class Menu {
 		System.out.println("SAINDO DO SISTEMA...");
 	}
 	
+	public void clientesDevedores() {
+		System.out.println("====================-Consulta de devedores-====================");
+	}
+
+	public void relatorio() {
+		System.out.println("====================-Relatório de clientes-====================");
+	}
 	
 }
+
 

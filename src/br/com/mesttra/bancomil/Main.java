@@ -1,6 +1,5 @@
 package br.com.mesttra.bancomil;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 import br.com.mesttra.bancomil.cliente.Cliente;
@@ -20,34 +19,36 @@ public class Main {
 
 		FuncoesGerente gerente = new FuncoesGerente();
 		Menu ui = new Menu();
-		PopulaBanco();
+//		PopulaBanco();
 
+		int cadastrados = 0;
+		
 		int operacao;
 		Integer numeroDaConta;
 		boolean flag = true;
 
 		while (flag) {
 			input = new Scanner(System.in);
-			limpaConsole();
 			ui.cabecalho();
 			ui.opcoes();
 			operacao = input.nextInt();
 			try {
 				switch (operacao) {
 				case 1:
-					limpaConsole();
+					input = new Scanner(System.in);
 					ui.opcaoCadastro();
 					int op = verificaOperacaoCadastro(input);
 					if (op == 1) {
-						gerente.cadastrarClientePj(clientes);
+						cadastrados = gerente.cadastrarClientePj(clientes, cadastrados);
 					} else if (op == 2) {
-						gerente.cadastrarClientePf(clientes);
+						cadastrados = gerente.cadastrarClientePf(clientes, cadastrados);
 					} else {
 						break;
 					}
 					break;
 
 				case 2:
+					input = new Scanner(System.in);
 					ui.consultarCliente();
 					numeroDaConta = input.nextInt();
 					String cliente = gerente.consultarCliente(numeroDaConta, clientes);
@@ -55,12 +56,14 @@ public class Main {
 					break;
 
 				case 3:
+					input = new Scanner(System.in);
 					ui.removerCliente();
 					numeroDaConta = input.nextInt();
 					gerente.removerCliente(numeroDaConta, clientes);
 					break;
 
 				case 4:
+					input = new Scanner(System.in);
 					ui.transferenciaBancaria();
 					ui.transFonte();
 					Integer numeroFonte = input.nextInt();
@@ -76,6 +79,7 @@ public class Main {
 					break;
 
 				case 5:
+					input = new Scanner(System.in);
 					ui.alterarLimite();
 					numeroDaConta = input.nextInt();
 					Double limiteAtual = gerente.consultaLimite(numeroDaConta, clientes);
@@ -86,6 +90,7 @@ public class Main {
 					break;
 
 				case 6:
+					input = new Scanner(System.in);
 					ui.deposito();
 					numeroDaConta = input.nextInt();
 					ui.valorDeposito();
@@ -94,6 +99,14 @@ public class Main {
 					break;
 
 				case 7:
+					input = new Scanner(System.in);
+					ui.clientesDevedores();
+					gerente.consultarClientesNegativados(clientes);
+					break;
+					
+				case 8:
+					input = new Scanner(System.in);
+					ui.relatorio();
 					gerente.relatorio(clientes);
 					break;
 				default:
@@ -116,15 +129,6 @@ public class Main {
 		return op;
 	}
 
-	public static void limpaConsole() {
-		try {
-			if (System.getProperty("os.name").contains("Windows"))
-				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-			else
-				Runtime.getRuntime().exec("clear");
-		} catch (IOException | InterruptedException ex) {
-		}
-	}
 
 	public static void PopulaBanco() {
 

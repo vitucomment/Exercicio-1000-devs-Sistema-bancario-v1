@@ -12,7 +12,7 @@ public class ClientePj extends Cliente {
 		super(numero, agencia, telefone, saldo, limite);
 		this.cnpj = cnpj;
 		this.nomeFantasia = nomeFantasia;
-		this.nomeSocial = nomeFantasia;
+		this.nomeSocial = nomeSocial;
 		this.socios = socios;
 	}
 

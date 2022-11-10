@@ -10,9 +10,6 @@ public abstract class Cliente {
 	private Double saldo;
 	private Double limite;
 
-	public Cliente() {
-	}
-
 	public Cliente(Integer numero, Integer agencia, String telefone, Double saldo, Double limite) {
 		this.numero = numero;
 		this.agencia = agencia;
@@ -31,12 +28,12 @@ public abstract class Cliente {
 	}
 
 	public void saca(Double valor) throws SaldoInsuficienteException {
-		if (this.saldo < valor) {
+		Double valorDisponivel = this.saldo + this.limite;
+		if (valorDisponivel < valor) {
 			throw new SaldoInsuficienteException("Saldo insuficiente");
 		}
 		this.saldo -= valor;
 	}
-
 
 	public Integer getNumero() {
 		return numero;
