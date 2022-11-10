@@ -1,20 +1,14 @@
 package br.com.mesttra.bancomil.cliente;
 
-
 public class ClientePj extends Cliente {
 
 	private String cnpj;
-	private String[] socios = new String[3];
+	private Socios[] socios;
 	private String nomeSocial;
 	private String nomeFantasia;
 
-	public ClientePj(String nomeSocial) {
-		this.nomeSocial = nomeSocial;
-	}
-	
-	
-	public ClientePj(Integer numero, Integer agencia, Integer telefone, Double saldo, Double limite,
-			String cnpj, String[] socios, String nomeSocial, String nomeFantasia) {
+	public ClientePj(Integer numero, Integer agencia, String telefone, Double saldo, Double limite, String cnpj,
+			Socios[] socios, String nomeSocial, String nomeFantasia) {
 		super(numero, agencia, telefone, saldo, limite);
 		this.cnpj = cnpj;
 		this.nomeFantasia = nomeFantasia;
@@ -30,11 +24,11 @@ public class ClientePj extends Cliente {
 		this.cnpj = cnpj;
 	}
 
-	public String[] getSocios() {
+	public Socios[] getSocios() {
 		return socios;
 	}
 
-	public void setSocios(String[] socios) {
+	public void setSocios(Socios[] socios) {
 		this.socios = socios;
 	}
 
@@ -54,4 +48,21 @@ public class ClientePj extends Cliente {
 		this.nomeFantasia = nomeFantasia;
 	}
 
+	public String toStringSocios() {
+		String msg = "";
+		for(int i = 0; i < socios.length; i++) {
+			msg += this.socios[i].toString();
+		}
+		return msg;
+	}
+	
+	@Override
+	public String toString() {
+		String cliente = ("Numero: " + getNumero() + "\n" + "Agencia: " + getAgencia() + "\n" + "Telefone: "
+				+ getTelefone() + "\n" + "Saldo: " + getSaldo() + "\n" + "Limite: " + getLimite() + "\n" + "Cnpj: "
+				+ getCnpj() + "\n" + "Sócios: " + toStringSocios() + "\n" + "Razão social: " + getNomeSocial() + "\n"
+				+ "Nome fantasia: " + getNomeFantasia() + "\n");
+
+		return cliente;
+	}
 }

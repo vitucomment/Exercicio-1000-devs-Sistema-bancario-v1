@@ -1,14 +1,13 @@
 package br.com.mesttra.bancomil.cliente;
 
-
 public class ClientePf extends Cliente {
 
 	private String cpf;
 	private String nome;
-	private int idade;
+	private Integer idade;
 
-	public ClientePf(Integer numero, Integer agencia, Integer telefone, Double saldo, Double limite, String cpf,
-			String nome, int idade) {
+	public ClientePf(Integer numero, Integer agencia, String telefone, Double saldo, Double limite, String cpf,
+			String nome, Integer idade) {
 		super(numero, agencia, telefone, saldo, limite);
 		this.cpf = cpf;
 		this.nome = nome;
@@ -37,6 +36,15 @@ public class ClientePf extends Cliente {
 
 	public void setIdade(int idade) {
 		this.idade = idade;
+	}
+
+	@Override
+	public String toString() {
+		String cliente = ("Nome: " + getNome() + "\n" + "Idade: " + getIdade() + "\n" + "Cpf: " + getCpf() + "\n"
+				+ "Numero: " + getNumero() + "\n" + "Agencia: " + getAgencia() + "\n" + "Telefone: " + getTelefone()
+				+ "\n" + "Saldo: " + getSaldo() + "\n" + "Limite: " + getLimite() + "\n");
+
+		return cliente;
 	}
 
 }

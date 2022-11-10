@@ -6,19 +6,19 @@ public abstract class Cliente {
 
 	private Integer numero;
 	private Integer agencia;
-	private Integer telefone;
+	private String telefone;
 	private Double saldo;
 	private Double limite;
 
 	public Cliente() {
 	}
 
-	public Cliente(Integer numero, Integer agencia, Integer telefone, Double saldo, Double limite) {
+	public Cliente(Integer numero, Integer agencia, String telefone, Double saldo, Double limite) {
 		this.numero = numero;
 		this.agencia = agencia;
 		this.telefone = telefone;
-		this.saldo = saldo;
 		this.limite = limite;
+		this.saldo = saldo;
 	}
 
 	public void transfere(Double valor, Cliente destino) throws SaldoInsuficienteException {
@@ -37,6 +37,7 @@ public abstract class Cliente {
 		this.saldo -= valor;
 	}
 
+
 	public Integer getNumero() {
 		return numero;
 	}
@@ -53,11 +54,11 @@ public abstract class Cliente {
 		this.agencia = agencia;
 	}
 
-	public Integer getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Integer telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
