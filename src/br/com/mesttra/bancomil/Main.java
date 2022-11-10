@@ -1,5 +1,6 @@
 package br.com.mesttra.bancomil;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import br.com.mesttra.bancomil.cliente.Cliente;
@@ -14,7 +15,7 @@ public class Main {
 
 	static Cliente[] clientes = new Cliente[49];
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		Scanner input = new Scanner(System.in);
 
 		FuncoesGerente gerente = new FuncoesGerente();
@@ -22,11 +23,10 @@ public class Main {
 //		PopulaBanco();
 
 		int cadastrados = 0;
-		
+		limpaConsole();
 		int operacao;
 		Integer numeroDaConta;
 		boolean flag = true;
-
 		while (flag) {
 			input = new Scanner(System.in);
 			ui.cabecalho();
@@ -35,19 +35,28 @@ public class Main {
 			try {
 				switch (operacao) {
 				case 1:
+					limpaConsole();
 					input = new Scanner(System.in);
 					ui.opcaoCadastro();
 					int op = verificaOperacaoCadastro(input);
 					if (op == 1) {
 						cadastrados = gerente.cadastrarClientePj(clientes, cadastrados);
+						Thread.sleep(2500);
+						limpaConsole();
 					} else if (op == 2) {
 						cadastrados = gerente.cadastrarClientePf(clientes, cadastrados);
+						Thread.sleep(2500);
+						limpaConsole();
 					} else {
+						System.out.println("OPERAÇÃO CANCELADA");
+						Thread.sleep(2500);
+						limpaConsole();
 						break;
 					}
 					break;
 
 				case 2:
+					limpaConsole();
 					input = new Scanner(System.in);
 					ui.consultarCliente();
 					numeroDaConta = input.nextInt();
@@ -56,6 +65,7 @@ public class Main {
 					break;
 
 				case 3:
+					limpaConsole();
 					input = new Scanner(System.in);
 					ui.removerCliente();
 					numeroDaConta = input.nextInt();
@@ -63,6 +73,7 @@ public class Main {
 					break;
 
 				case 4:
+					limpaConsole();
 					input = new Scanner(System.in);
 					ui.transferenciaBancaria();
 					ui.transFonte();
@@ -79,6 +90,7 @@ public class Main {
 					break;
 
 				case 5:
+					limpaConsole();
 					input = new Scanner(System.in);
 					ui.alterarLimite();
 					numeroDaConta = input.nextInt();
@@ -90,6 +102,7 @@ public class Main {
 					break;
 
 				case 6:
+					limpaConsole();
 					input = new Scanner(System.in);
 					ui.deposito();
 					numeroDaConta = input.nextInt();
@@ -99,12 +112,14 @@ public class Main {
 					break;
 
 				case 7:
+					limpaConsole();
 					input = new Scanner(System.in);
 					ui.clientesDevedores();
 					gerente.consultarClientesNegativados(clientes);
 					break;
 					
 				case 8:
+					limpaConsole();
 					input = new Scanner(System.in);
 					ui.relatorio();
 					gerente.relatorio(clientes);
@@ -130,6 +145,16 @@ public class Main {
 	}
 
 
+	public static void limpaConsole() {
+		try {
+			if (System.getProperty("os.name").contains("Windows"))
+				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+			else
+				Runtime.getRuntime().exec("clear");
+		} catch (IOException | InterruptedException ex) {
+		}
+	}
+	
 	public static void PopulaBanco() {
 
 		Socios socio1 = new Socios("Associado1", 15);

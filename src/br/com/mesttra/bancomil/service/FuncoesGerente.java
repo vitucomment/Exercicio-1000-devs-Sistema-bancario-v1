@@ -205,7 +205,6 @@ public class FuncoesGerente {
 			if ((clientes[i] != null) && clientes[i].getSaldo() < 0) {
 				System.out.println(clientes[i]);
 				System.out.println("------------------------------");
-
 			}
 		}
 	}
